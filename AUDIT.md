@@ -1,9 +1,9 @@
 # Informe de Auditoría — B-Tree
 
 **Asignatura:** Estructuras de Datos Avanzadas (IC10D – EDA)  
-**Estudiante:** [Nombre]  
-**RUT:** [RUT]  
-**Fecha:** [AAAA-MM-DD]  
+**Estudiante:** Víctor Jara  
+**RUT:** 21.243.169-9  
+**Fecha:** 2026-11-17    
 **Taller:** 4 — Auditoría de un B-Tree
 
 ---
@@ -57,9 +57,9 @@ pero la decisión es discutible, clasifícala como diseño.
 
 | ID | Ubicación | Decisión observada | Por qué es discutible | Impacto | Propuesta | Prioridad |
 | :--- | :--- | :--- | :--- | :--- | :--- | :---: |
-| H-01 | `src/...:línea` | | | | | Alta/Media/Baja |
-| H-02 | `src/...:línea` | | | | | |
-| H-03 | `src/...:línea` | | | | | |
+| H-01 | `src/node.py:29` | La variable max_keys nunca se verifica cuantos bytes ocupa|si las claves más los punteros no caben en el bloque, el invariante se rompe y se duplica el costo.  |Aumento de costo |Verificar cuantos bytes ocupan la cantidad máxima de claves más los punteros  | Media |
+| H-02 | `src/tree.py:49` |El arbol permite tener claves duplicadas |Las claves duplicadas violan la invariante básica del árbol, por lo tanto perjudica el rendimiento del mismo.  |Baja de rendimiento |Hacer que las claves sean únicas de forma artificial o almacenar listas de punteros a registros.  |Media |
+| H-03 | `src/...:línea` | Al borrar un nodo se reconstruye el árbol entero|Si se reconstruye un árbol entero al eliminar un nodo es ineficiente |Aumento de costo innecesario | Al eliminar un nodo, se deben evaluar las condiciones actuales del árbol para eliminar el nodo sin rehacer todo el árbol|Media |
 
 > Si encuentras más de tres, duplica una fila. No se penaliza no llegar a
 > las decisiones más finas; se evalúa la calidad de las que sí sostienes.
